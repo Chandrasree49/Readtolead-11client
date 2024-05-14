@@ -41,7 +41,7 @@ const UpdateBookForm = ({}) => {
     e.preventDefault();
     try {
       await axios.put(`${BASE_URL}/updatebook/${id}`, book);
-      // Redirect to all books page or any other page after successful update
+    
       navigate("/all-books");
     } catch (error) {
       console.error("Error updating book:", error);
@@ -50,7 +50,8 @@ const UpdateBookForm = ({}) => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-3xl font-bold mb-4">Update Book</h1>
+      
+      <h1 className="text-center text-4xl font-bold " style={{color:"#E46019 ",marginTop:"40px",marginBottom:"20px"}}>Update Book</h1>
       <form onSubmit={handleSubmit} className="max-w-md mx-auto">
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -115,7 +116,8 @@ const UpdateBookForm = ({}) => {
         <div className="flex justify-end">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className=" text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            style={{background:"#F77D3A"}}
           >
             Submit
           </button>
