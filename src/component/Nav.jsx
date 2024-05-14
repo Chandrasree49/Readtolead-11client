@@ -112,14 +112,14 @@ const Nav = () => {
           <div>
             <img
               src="https://www.creativefabrica.com/wp-content/uploads/2020/09/17/Book-Logo-Graphics-5535886-1-580x386.jpg"
-              style={{ width: "80px", height: "50px" }}
+              style={{ width: "100px", height: "50px" }}
             />
           </div>
           <div>
             <h1
-              style={{ fontSize: "28px", fontWeight: "bold", color: "#7C078F" }}
+              style={{ fontSize: "28px", fontWeight: "bold", color: "#E46019" }}
             >
-              ReadTO<span style={{ color: "#09A0BE" }}>Lead</span>
+              READ<span style={{ color: "#7C078F" }}>TO</span>LEAD
             </h1>
           </div>
         </div>
@@ -221,18 +221,18 @@ const Nav = () => {
             <NavLink
               to="/Login"
               className="btn"
-              style={{ background: "#BD57C1" }}
+              style={{ background: "#F77D3A" }}
             >
-              login
+              Login
             </NavLink>
           </a>
         )}
 
         {user?.accessToken.length >= 4 && (
           <a
-            className="btn"
+            className="btn "
             onClick={handleLogout}
-            style={{ background: "#BF5DC3" }}
+            style={{ background: "#F77D3A" }}
           >
             Logout
           </a>
