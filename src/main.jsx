@@ -17,6 +17,7 @@ import Category from "./pages/Category.jsx";
 import BorrowBook from "./pages/BorrowBook.jsx";
 import BooksByCategory from "./pages/BooksByCategory.jsx";
 import BookDetails from "./pages/BookDetails.jsx";
+import UpdateBookForm from "./pages/UpdateBookForm.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
         element: <AddBook />,
       },
       {
-        path: "/AllBook",
+        path: "/all-book",
         element: (
           <ProtectedRoute>
             <AllBook></AllBook>
@@ -86,6 +87,15 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <BooksByCategory></BooksByCategory>
+          </ProtectedRoute>
+        ),
+      },
+
+      {
+        path: "/update-book/:id",
+        element: (
+          <ProtectedRoute>
+            <UpdateBookForm></UpdateBookForm>
           </ProtectedRoute>
         ),
       },

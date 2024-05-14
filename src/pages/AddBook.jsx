@@ -80,7 +80,7 @@ const AddBook = () => {
           addedBy: "Admin",
         });
       } else {
-        toast.success("Book add Failed");
+        toast.error("Book add Failed");
         console.error("Error adding book:", response.statusText);
       }
     } catch (error) {
