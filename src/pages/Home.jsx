@@ -3,6 +3,7 @@ import Hero from "../component/Hero";
 import TabCat from "../component/TabCat";
 import BookReviewsSection from "./BookReadSection";
 import BookRecommendationsSection from "./BookRecomendationSection";
+import Category from "./Category";
 
 const Home = () => {
   function getCookie(name) {
@@ -15,7 +16,7 @@ const Home = () => {
   return (
     <div>
       <Hero></Hero>
-      <TabCat></TabCat>
+      <Category></Category>
       <BookReviewsSection />
       <BookRecommendationsSection></BookRecommendationsSection>
     </div>

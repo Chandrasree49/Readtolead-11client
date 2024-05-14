@@ -2,7 +2,7 @@ import React from "react";
 import ReviewCard from "./ReviewCard";
 
 const BookReviewsSection = () => {
-  // Assuming reviewsData is an array containing information about book reviews
+
   const reviewsData = [
     {
       id: 1,

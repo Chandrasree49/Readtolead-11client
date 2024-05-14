@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { BASE_URL, API_ENDPOINTS } from "./apiEndPoints";
 import { AuthContext } from "../component/AuthProvider/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddBook = () => {
   const { user, logout } = useContext(AuthContext);
@@ -10,16 +12,15 @@ const AddBook = () => {
     name: "",
     quantity: "",
     authorName: "",
-    category: "Novel", // Default category
+    category: "Novel",
     shortDescription: "",
     rating: "",
     isBorrowed: false,
     borrower: "",
     borrowedBy: "",
-    addedBy: "", // Assuming the logged-in user is 'Admin'
+    addedBy: "",
   });
   useEffect(() => {
-    // Update addedBy in formData when user changes
     if (user && user.email) {
       setFormData((prevState) => ({
         ...prevState,
@@ -29,7 +30,20 @@ const AddBook = () => {
   }, [user]);
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    if (name === "rating") {
+      // Ensure rating is between 1 and 5
+      const ratingValue = Math.max(1, Math.min(5, parseInt(value)));
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: ratingValue,
+      }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -43,14 +57,15 @@ const AddBook = () => {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
+        toast.success("Book added successfully");
         console.log("Book added successfully");
-        // Clear form fields after successful submission
+
         setFormData({
           image: "",
           name: "",
           quantity: "",
           authorName: "",
-          category: "", // Reset category to default
+          category: "",
           shortDescription: "",
           rating: "",
           isBorrowed: false,
@@ -59,15 +74,18 @@ const AddBook = () => {
           addedBy: "Admin",
         });
       } else {
+        toast.success("Book add Failed");
         console.error("Error adding book:", response.statusText);
       }
     } catch (error) {
+      toast.success("Book add Failed");
       console.error("Error adding book:", error);
     }
   };
 
   return (
     <div className="container mx-auto p-4">
+      <ToastContainer />
       <h1 className="text-2xl font-bold mb-4">Add Book</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -130,7 +148,6 @@ const AddBook = () => {
             <option value="History">History</option>
             <option value="Drama">Drama</option>
             <option value="Sci-Fi">Sci-Fi</option>
-            {/* Add more options as needed */}
           </select>
         </div>
 

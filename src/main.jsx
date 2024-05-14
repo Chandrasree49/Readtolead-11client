@@ -15,6 +15,8 @@ import UpdateProfile from "./pages/UpdateProfile.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Category from "./pages/Category.jsx";
 import BorrowBook from "./pages/BorrowBook.jsx";
+import BooksByCategory from "./pages/BooksByCategory.jsx";
+import BookDetails from "./pages/BookDetails.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -76,6 +78,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <BorrowBook></BorrowBook>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/bookbycategory/:category",
+        element: (
+          <ProtectedRoute>
+            <BooksByCategory></BooksByCategory>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/bookdetails/:id",
+        element: (
+          <ProtectedRoute>
+            <BookDetails></BookDetails>
           </ProtectedRoute>
         ),
       },
