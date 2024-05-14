@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "./AuthProvider/AuthProvider";
 
-
 const Nav = () => {
   const { user, logout } = useContext(AuthContext);
   console.log(user);
@@ -48,7 +47,7 @@ const Nav = () => {
 
             {user != null && (
               <NavLink
-                to="/AllTouristsSpot"
+                to="/add-book"
                 className={({ isActive }) =>
                   isActive
                     ? "font-semibold active py-2 px-4 "
@@ -59,26 +58,30 @@ const Nav = () => {
               </NavLink>
             )}
 
-            <NavLink
-              to="/AddTouristsSpot"
-              className={({ isActive }) =>
-                isActive
-                  ? "font-semibold active py-2 px-4 "
-                  : "font-semibold py-2 px-4"
-              }
-            >
-             All Book
-            </NavLink>
-            <NavLink
-              to="/Register"
-              className={({ isActive }) =>
-                isActive
-                  ? "font-semibold active py-2 px-4 "
-                  : " font-semibold py-2 px-4"
-              }
-            >
-              Register
-            </NavLink>
+            {user != null && (
+              <NavLink
+                to="/all-book"
+                className={({ isActive }) =>
+                  isActive
+                    ? "font-semibold active py-2 px-4 "
+                    : "font-semibold py-2 px-4"
+                }
+              >
+                All Book
+              </NavLink>
+            )}
+            {user == null && (
+              <NavLink
+                to="/Register"
+                className={({ isActive }) =>
+                  isActive
+                    ? "font-semibold active py-2 px-4 "
+                    : " font-semibold py-2 px-4"
+                }
+              >
+                Register
+              </NavLink>
+            )}
             {user != null && (
               <NavLink
                 to="/UpdateProfile"
@@ -91,16 +94,18 @@ const Nav = () => {
                 Update Profile
               </NavLink>
             )}
-            <NavLink
-              to="/MyList"
-              className={({ isActive }) =>
-                isActive
-                  ? "font-semibold active py-2 px-4 "
-                  : " font-semibold py-2 px-4"
-              }
-            >
-              Borrow Book
-            </NavLink>
+            {user != null && (
+              <NavLink
+                to="/borrowed-book"
+                className={({ isActive }) =>
+                  isActive
+                    ? "font-semibold active py-2 px-4 "
+                    : " font-semibold py-2 px-4"
+                }
+              >
+                Borrow Book
+              </NavLink>
+            )}
           </ul>
         </div>
         <div className="flex">
@@ -134,7 +139,7 @@ const Nav = () => {
 
           {user != null && (
             <NavLink
-              to="/AllTouristsSpot"
+              to="/add-book"
               className={({ isActive }) =>
                 isActive
                   ? "font-semibold active py-2 px-4 "
@@ -145,16 +150,18 @@ const Nav = () => {
             </NavLink>
           )}
 
-          <NavLink
-            to="/AddTouristsSpot"
-            className={({ isActive }) =>
-              isActive
-                ? "font-semibold active py-2 px-4 "
-                : "font-semibold py-2 px-4"
-            }
-          >
-           All Book
-          </NavLink>
+          {user != null && (
+            <NavLink
+              to="/all-book"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-semibold active py-2 px-4 "
+                  : "font-semibold py-2 px-4"
+              }
+            >
+              All Book
+            </NavLink>
+          )}
           {user == null && (
             <NavLink
               to="/Register"
@@ -179,16 +186,18 @@ const Nav = () => {
               Update Profile
             </NavLink>
           )}
-          <NavLink
-            to="/MyList"
-            className={({ isActive }) =>
-              isActive
-                ? "font-semibold active py-2 px-4 "
-                : " font-semibold py-2 px-4"
-            }
-          >
-         Borrow Book
-          </NavLink>
+          {user != null && (
+            <NavLink
+              to="/borrowed-book"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-semibold active py-2 px-4 "
+                  : " font-semibold py-2 px-4"
+              }
+            >
+              Borrow Book
+            </NavLink>
+          )}
         </ul>
       </div>
       <div className="navbar-end">

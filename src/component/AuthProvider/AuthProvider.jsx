@@ -9,6 +9,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
+import axios from "axios";
 import { getAuth } from "firebase/auth";
 
 export const AuthContext = createContext(null);
@@ -24,15 +25,44 @@ const AuthProvider = ({ children }) => {
     projectId: "assignment-11-c1edb",
     storageBucket: "assignment-11-c1edb.appspot.com",
     messagingSenderId: "548904369252",
-    appId: "1:548904369252:web:ac93a26b616f4b32f83371"
+    appId: "1:548904369252:web:ac93a26b616f4b32f83371",
   };
   const app = initializeApp(firebaseConfig);
 
   const auth = getAuth(app);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
+      const userEmail = currentUser.email || user.email;
+      if (currentUser) {
+        try {
+          axios.defaults.withCredentials = true;
+          const response = await axios.post(
+            "http://localhost:3000/api/jwt",
+            {
+              email: userEmail,
+            },
+            { withCredentials: true }
+          );
+          console.log(response.data); // Assuming the response contains { auth: true }
+          localStorage.setItem("token", response.data.token);
+        } catch (error) {
+          console.error("Error logging in:", error);
+        }
+      } else {
+        sessionStorage.removeItem("token");
+        axios.defaults.withCredentials = true;
+        const response = await axios.post(
+          "http://localhost:3000/api/logout",
+          {
+            email: userEmail,
+          },
+          { withCredentials: true }
+        );
+
+        setUser(null);
+      }
     });
     return () => unsubscribe();
   }, [auth]);
@@ -78,8 +108,18 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     return auth
       .signOut()
-      .then(() => {
+      .then(async () => {
         setUser(null);
+        sessionStorage.removeItem("token");
+        setUser(null);
+        const response = await axios.post(
+          "http://localhost:3000/api/logout",
+          {
+            email: "",
+          },
+          { withCredentials: true }
+        );
+        console.log(response);
       })
       .catch((error) => {
         throw error;
