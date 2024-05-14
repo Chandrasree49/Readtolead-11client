@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
             },
             { withCredentials: true }
           );
-          console.log(response.data); // Assuming the response contains { auth: true }
+          console.log(response.data);
           localStorage.setItem("token", response.data.token);
         } catch (error) {
           console.error("Error logging in:", error);
