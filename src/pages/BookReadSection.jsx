@@ -29,7 +29,8 @@ const BookReviewsSection = () => {
 
   return (
     <section className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-4">Book Reviews</h2>
+       <h1 className="text-center text-4xl font-bold " style={{color:"#E46019 ",marginTop:"40px"}}>Book Reviews</h1>
+      <p  className="text-center font-semibold my-5 ">Some books reviews are here.Some best readen book in ReadtoLead</p>
       <div className="grid grid-cols-12 sm:grid-cols-6 md:grid-cols-3 gap-4">
         {reviewsData.map((review) => (
           <ReviewCard key={review.id} review={review} />

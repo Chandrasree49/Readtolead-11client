@@ -5,7 +5,7 @@ const Category = () => {
   return (
     <div>
       <h1 className="text-center text-4xl font-bold " style={{color:"#E46019 ",marginTop:"40px"}}>Book Category</h1>
-      <p  className="text-center font-semibold my-10 ">Here are some categorywise book given.Anyone can choose their favourite books clicking this category.</p>
+      <p  className="text-center font-semibold my-5 ">Here are some categorywise book given.Anyone can choose their favourite books clicking this category.</p>
     <div className="flex flex-wrap justify-center">
       <CategoryCard
         category="History"
