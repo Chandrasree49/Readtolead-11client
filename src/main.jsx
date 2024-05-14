@@ -1,27 +1,24 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import MainLayout from './layout/MainLayout.jsx'
-import AuthProvider from './component/AuthProvider/AuthProvider.jsx'
-import Login from './pages/Login.jsx'
-import Register from './pages/Register.jsx'
-import Home from './pages/Home.jsx'
-import AddBook from './pages/AddBook.jsx'
-import AllBook from './pages/AllBook.jsx'
-import Details from './pages/Details.jsx'
-import ProtectedRoute from './component/ProtectedRoute.jsx'
-import UpdateProfile from './pages/UpdateProfile.jsx'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Category from './pages/Category.jsx'
-import BorrowBook from './pages/BorrowBook.jsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+import MainLayout from "./layout/MainLayout.jsx";
+import AuthProvider from "./component/AuthProvider/AuthProvider.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import Home from "./pages/Home.jsx";
+import AddBook from "./pages/AddBook.jsx";
+import AllBook from "./pages/AllBook.jsx";
+import Details from "./pages/Details.jsx";
+import ProtectedRoute from "./component/ProtectedRoute.jsx";
+import UpdateProfile from "./pages/UpdateProfile.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Category from "./pages/Category.jsx";
+import BorrowBook from "./pages/BorrowBook.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<MainLayout></MainLayout>,
+    element: <MainLayout></MainLayout>,
     children: [
       {
         path: "/",
@@ -46,7 +43,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/AddBook",
+        path: "/add-book",
         element: <AddBook />,
       },
       {
@@ -85,10 +82,10 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-  <AuthProvider>
-  <RouterProvider router={router}></RouterProvider>
-  </AuthProvider>
-  </React.StrictMode>,
-)
+    <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider>
+  </React.StrictMode>
+);
