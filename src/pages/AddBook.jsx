@@ -10,9 +10,9 @@ const AddBook = () => {
   const [formData, setFormData] = useState({
     image: "",
     name: "",
-    quantity: "",
+    quantity: 0,
     authorName: "",
-    category: "Novel",
+    category: "History",
     shortDescription: "",
     rating: "",
     isBorrowed: false,
@@ -31,7 +31,13 @@ const AddBook = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "rating") {
+    if (name === "quantity") {
+      const quantity = parseInt(value);
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: quantity,
+      }));
+    } else if (name === "rating") {
       // Ensure rating is between 1 and 5
       const ratingValue = Math.max(1, Math.min(5, parseInt(value)));
       setFormData((prevState) => ({
@@ -63,7 +69,7 @@ const AddBook = () => {
         setFormData({
           image: "",
           name: "",
-          quantity: "",
+          quantity: 0,
           authorName: "",
           category: "",
           shortDescription: "",
@@ -111,6 +117,8 @@ const AddBook = () => {
             type="number"
             id="quantity"
             name="quantity"
+            min="1"
+            max="500"
             value={formData.quantity}
             onChange={handleChange}
             className="border border-gray-300 rounded px-3 py-2 w-full"
@@ -143,11 +151,11 @@ const AddBook = () => {
             onChange={handleChange}
             className="border border-gray-300 rounded px-3 py-2 w-full"
           >
-            <option value="Novel">Novel</option>
-            <option value="Thriller">Thriller</option>
             <option value="History">History</option>
-            <option value="Drama">Drama</option>
-            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Mysteries">Mysteries</option>
+
+            <option value="Science">Science</option>
+            <option value="Horror">Horror</option>
           </select>
         </div>
 

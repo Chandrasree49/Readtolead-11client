@@ -188,7 +188,7 @@ const Nav = () => {
           )}
           {user != null && (
             <NavLink
-              to="/borrowed-book"
+              to="/borrowed-books"
               className={({ isActive }) =>
                 isActive
                   ? "font-semibold active py-2 px-4 "

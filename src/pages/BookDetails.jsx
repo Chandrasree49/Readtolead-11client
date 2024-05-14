@@ -4,12 +4,14 @@ import axios from "axios";
 import { AuthContext } from "../component/AuthProvider/AuthProvider";
 import BorrowModal from "./BorrowModal";
 import { BASE_URL } from "./apiEndPoints";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function BookDetails() {
   const { user, logout } = useContext(AuthContext);
   const { id } = useParams();
   const [book, setBook] = useState(null);
-  const [isBorrowed, setIsBorrowed] = useState(false);
+  const [isBorrowed, setIsBorrowed] = useState("yes");
   const [showBorrowModal, setShowBorrowModal] = useState(false);
 
   useEffect(() => {
@@ -17,6 +19,7 @@ function BookDetails() {
       try {
         const response = await axios.get(`${BASE_URL}/api/getbookbyid/${id}`);
         setBook(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching book details:", error);
       }
@@ -34,7 +37,8 @@ function BookDetails() {
             userEmail: user.email,
           }
         );
-        setIsBorrowed(response.data.message === "yes");
+        setIsBorrowed(response.data.message);
+        console.log(response.data.message);
       } catch (error) {
         console.error("Error checking borrowed status:", error);
       }
@@ -47,68 +51,132 @@ function BookDetails() {
     setShowBorrowModal(true);
   };
 
+  const [returnDate, setReturnDate] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!returnDate) {
+      setErrorMessage("Please enter a return date");
+      return;
+    }
+
+    try {
+      await axios.post(`${BASE_URL}/api/borrow/${book._id}`, {
+        userEmail: user.email,
+        userName: user.displayName,
+        returnDate,
+        borroweddate: new Date().toISOString(),
+      });
+
+      onClose();
+    } catch (error) {
+      console.error("Error borrowing book:", error);
+      toast.success("Borrow Failed");
+      setErrorMessage("An error occurred. Please try again later.");
+    }
+  };
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      {book ? (
-        <div className="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
-          <img
-            src={book.image}
-            alt={book.name}
-            className="w-full h-64 object-cover"
-          />
-          <div className="p-6">
-            <h2 className="text-xl font-bold mb-2">{book.name}</h2>
-            <p className="text-gray-700 mb-2">Author: {book.authorName}</p>
-            <p className="text-gray-700 mb-2">Category: {book.category}</p>
-            <p className="text-gray-700 mb-2">Rating: {book.rating}</p>
-            <p className="text-gray-700 mb-4">
-              Description: {book.shortDescription}
-            </p>
-            <button
-              onClick={handleBorrow}
-              className={`bg-blue-500 text-white font-semibold py-2 px-4 rounded ${
-                book.quantity === 0 || isBorrowed
-                  ? "opacity-50 cursor-not-allowed"
-                  : "hover:bg-blue-600"
-              }`}
-              disabled={book.quantity === 0 || isBorrowed}
-            >
-              {isBorrowed ? "Return" : "Borrow"}
-            </button>
-            <button
-              className="btn"
-              onClick={() => document.getElementById("my_modal_5").showModal()}
-            >
-              open modal
-            </button>
+    <div>
+      <ToastContainer />
+
+      {book && (
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+            <img
+              src={book.image}
+              alt={book.name}
+              className="w-full h-64 object-cover"
+            />
+            <div className="p-6">
+              <h2 className="text-xl font-bold mb-2">{book.name}</h2>
+              <p className="text-gray-700 mb-2">Author: {book.authorName}</p>
+              <p className="text-gray-700 mb-2">Category: {book.category}</p>
+              <p className="text-gray-700 mb-2">Rating: {book.rating}</p>
+              <p className="text-gray-700 mb-4">
+                Description: {book.shortDescription}
+              </p>
+
+              {isBorrowed == "no" && book.quantity > 0 && (
+                <button
+                  className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600"
+                  onClick={() =>
+                    document.getElementById("my_modal_2").showModal()
+                  }
+                >
+                  Borrow
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-      ) : (
-        <p className="text-center">Loading...</p>
-      )}
 
-      {showBorrowModal && (
-        <BorrowModal
-          book={book}
-          onClose={() => setShowBorrowModal(false)}
-          user={user}
-        />
-      )}
+          <dialog id="my_modal_2" className="modal">
+            <div className="modal-box">
+              <p className="py-4">
+                <h3 className="font-bold text-lg">Want to Borrow!</h3>
+                <p className="py-4">{<h1>Borrow {book.name}</h1>}</p>
+              </p>
+              <div className="py-4">
+                <form method="dialog">
+                  <div>
+                    <label>Return Date:</label>
+                    <input
+                      type="date"
+                      value={returnDate}
+                      onChange={(e) => setReturnDate(e.target.value)}
+                    />
+                  </div>
+                  <br />
+                  <div>
+                    <label>Name:</label>
+                    <input
+                      type="text"
+                      value={user && user.displayName}
+                      disabled
+                    />
+                  </div>
+                  <br />
+                  <div>
+                    <label>Email:</label>
+                    <input type="text" value={user && user.email} disabled />
+                  </div>
+                  <br />
+                  <div>
+                    <button
+                      type="button"
+                      onClick={handleSubmit}
+                      className="bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-600"
+                    >
+                      Borrow Now
+                    </button>
+                    <br />
+                  </div>
+                  <button className="btn">Close</button>
+                </form>
+              </div>
+            </div>
+          </dialog>
 
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">
-            Press ESC key or click the button below to close
-          </p>
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
+          <dialog
+            id="my_modal_5"
+            className="modal modal-bottom sm:modal-middle"
+          >
+            <div className="modal-box">
+              <h3 className="font-bold text-lg">Want to Borrow!</h3>
+              <p className="py-4">{<h1>Borrow {book.name}</h1>}</p>
+
+              <div className="modal-content">
+                <form></form>
+              </div>
               <button className="btn">Close</button>
-            </form>
-          </div>
+            </div>
+          </dialog>
         </div>
-      </dialog>
+      )}
+
+      {!book && <div>Loading.............</div>}
     </div>
   );
 }

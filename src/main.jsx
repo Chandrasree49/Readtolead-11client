@@ -89,11 +89,20 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
       {
         path: "/bookdetails/:id",
         element: (
           <ProtectedRoute>
             <BookDetails></BookDetails>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/borrowed-books",
+        element: (
+          <ProtectedRoute>
+            <BorrowBook></BorrowBook>
           </ProtectedRoute>
         ),
       },
