@@ -92,16 +92,16 @@ function BookDetails() {
             />
             <div className="p-6">
               <h2 className="text-xl font-bold mb-2">{book.name}</h2>
-              <p className="text-gray-700 mb-2">Author: {book.authorName}</p>
-              <p className="text-gray-700 mb-2">Category: {book.category}</p>
-              <p className="text-gray-700 mb-2">Rating: {book.rating}</p>
+              <p className="text-gray-700 mb-2"><span className="font-semibold">Author: </span> {book.authorName}</p>
+              <p className="text-gray-700 mb-2"><span className="font-semibold">Category: </span>{book.category}</p>
+              <p className="text-gray-700 mb-2"><span className="font-semibold">Rating: </span>{book.rating}</p>
               <p className="text-gray-700 mb-4">
-                Description: {book.shortDescription}
+               <span className="font-semibold"> Description:</span> {book.shortDescription}
               </p>
 
               {isBorrowed == "no" && book.quantity > 0 && (
                 <button
-                  className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600"
+                  className="btn btn-outline btn-primary text-white font-semibold py-2 px-4 rounded"
                   onClick={() =>
                     document.getElementById("my_modal_2").showModal()
                   }
@@ -116,12 +116,12 @@ function BookDetails() {
             <div className="modal-box">
               <p className="py-4">
                 <h3 className="font-bold text-lg">Want to Borrow!</h3>
-                <p className="py-4">{<h1>Borrow {book.name}</h1>}</p>
+                <p className="py-4">{<h1>Borrow <span style={{color:"#7E13AB",fontWeight:"bold"}}>{book.name}</span></h1>}</p>
               </p>
               <div className="py-4">
                 <form method="dialog">
                   <div>
-                    <label>Return Date:</label>
+                    <label style={{color:"#A140CA"}}>Return Date: </label>
                     <input
                       type="date"
                       value={returnDate}
@@ -130,7 +130,7 @@ function BookDetails() {
                   </div>
                   <br />
                   <div>
-                    <label>Name:</label>
+                    <label style={{color:"#A140CA"}}>Name: </label>
                     <input
                       type="text"
                       value={user && user.displayName}
@@ -139,7 +139,7 @@ function BookDetails() {
                   </div>
                   <br />
                   <div>
-                    <label>Email:</label>
+                    <label style={{color:"#A140CA"}}>Email: </label>
                     <input type="text" value={user && user.email} disabled />
                   </div>
                   <br />
@@ -147,13 +147,14 @@ function BookDetails() {
                     <button
                       type="button"
                       onClick={handleSubmit}
-                      className="bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-600"
+                      className="btn btn-outline btn-warning font-semibold py-2 px-4"
                     >
                       Borrow Now
                     </button>
                     <br />
+                    <br></br>
                   </div>
-                  <button className="btn">Close</button>
+                  <button className="btn btn-outline btn-primary px-10">Close</button>
                 </form>
               </div>
             </div>
@@ -165,7 +166,7 @@ function BookDetails() {
           >
             <div className="modal-box">
               <h3 className="font-bold text-lg">Want to Borrow!</h3>
-              <p className="py-4">{<h1>Borrow {book.name}</h1>}</p>
+              <p className="py-4 ">{<h1>Borrow {book.name}</h1>}</p>
 
               <div className="modal-content">
                 <form></form>

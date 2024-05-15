@@ -49,7 +49,7 @@ const UpdateBookForm = ({}) => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className=" min-h-screen container mx-auto">
       <h1
         className="text-center text-4xl font-bold "
         style={{ color: "#E46019 ", marginTop: "40px", marginBottom: "20px" }}
