@@ -81,12 +81,7 @@ const AllBook = () => {
                 <p className="text-gray-700 mb-2">Category: {book.category}</p>
                 <p className="text-gray-700 mb-2">
                   Rating:
-                  <ReactRating
-                    initialRating={book.rating}
-                    readonly
-                    emptySymbol="far fa-star"
-                    fullSymbol="fas fa-star"
-                  />
+                  <ReactRating initialRating={book.rating} readonly />
                 </p>
                 <Link
                   to={`/update-book/${book._id}`}
