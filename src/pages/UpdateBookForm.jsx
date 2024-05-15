@@ -97,14 +97,31 @@ const UpdateBookForm = ({}) => {
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Category:
           </label>
-
-          <input
-            type="text"
+          <select
+      name="category"
+      value={book.category}
+      onChange={handleChange}
+      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    >
+       <option value="">Select a category</option>
+      <option value="History">History</option>
+      <option value="Mysteries">Mysteries</option>
+      <option value="Science">Science</option>
+      <option value="horror">Horror</option>
+   
+    </select>
+          {/* <select
             name="category"
             value={book.category}
             onChange={handleChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
+           <option value="">Select a category</option>
+      <option value="History">History</option>
+      <option value="Mysteries">Mysteries</option>
+      <option value="Science">Science</option>
+      <option value="horror">Horror</option>
+</select> */}
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">

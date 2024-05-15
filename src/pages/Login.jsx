@@ -49,7 +49,10 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full md:max-w-[40%] mx-auto md:min-w-[500px] border-2 rounded-xl p-5" style={{border:" 4px solid rgb(23, 152, 175"}}>
+    <div
+      className="w-full md:max-w-[40%] mx-auto md:min-w-[500px] border-2 rounded-xl p-5"
+      style={{ border: " 4px solid #E46019" }}
+    >
       <form onSubmit={handleLogin}>
         <ToastContainer></ToastContainer>
         <p>Email</p>
@@ -144,20 +147,34 @@ const Login = () => {
             </button>
           </div>
         </label>
-        <button className="btn w-full mt-4" style={{background:"rgb(23, 152, 175"}}>Login</button>
+        <button
+          className="btn w-full mt-4"
+          style={{ background: "#E46019", color: "white" }}
+        >
+          Login
+        </button>
       </form>
       <div className="flex justify-center mt-4 md:justify-between">
         <button
-          className="btn btn-outline btn-accent w-full md:w-auto md:ml-2 mb-2 md:mb-0"
+          className="btn btn-outline btn-warning w-full md:w-auto md:ml-2 mb-2 md:mb-0"
           onClick={handleGoogleLogin}
           style={{ marginTop: "20px", marginLeft: "30px" }}
         >
           {" "}
           Google Login
         </button>
-        <h5 style={{fontSize:"18px", fontWeight:"bold",color:"rgb(23, 152, 175", marginTop:"30px"}}>or</h5>
+        <h5
+          style={{
+            fontSize: "18px",
+            fontWeight: "bold",
+            color: "#E46019",
+            marginTop: "30px",
+          }}
+        >
+          or
+        </h5>
         <button
-          className="btn btn-outline btn-accent w-full md:w-auto md:ml-2 mb-2 md:mb-0"
+          className="btn btn-outline btn-warning w-full md:w-auto md:ml-2 mb-2 md:mb-0"
           onClick={handleGitLogin}
           style={{ margin: "20px" }}
         >
@@ -173,7 +190,7 @@ const Login = () => {
       )}
       <p className="text-center mt-4">
         Don't have an account?{" "}
-        <a href="/register" className="text-green-500 hover:underline">
+        <a href="/register" className="text-yellow-500 hover:underline">
           Register
         </a>
       </p>

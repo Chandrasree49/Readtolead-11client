@@ -11,7 +11,7 @@ import AddBook from "./pages/AddBook.jsx";
 import AllBook from "./pages/AllBook.jsx";
 import Details from "./pages/Details.jsx";
 import ProtectedRoute from "./component/ProtectedRoute.jsx";
-import UpdateProfile from "./pages/UpdateProfile.jsx";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Category from "./pages/Category.jsx";
 import BorrowBook from "./pages/BorrowBook.jsx";
@@ -34,15 +34,6 @@ const router = createBrowserRouter([
       {
         path: "/Register",
         element: <Register />,
-      },
-
-      {
-        path: "/UpdateProfile",
-        element: (
-          <ProtectedRoute>
-            <UpdateProfile></UpdateProfile>
-          </ProtectedRoute>
-        ),
       },
 
       {

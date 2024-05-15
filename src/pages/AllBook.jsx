@@ -76,12 +76,12 @@ const AllBook = () => {
                 className="w-full h-48 object-cover"
               />
               <div className="p-4">
-                <h2 className="text-xl font-bold mb-2">{book.name}</h2>
-                <p className="text-gray-700 mb-2">Author: {book.authorName}</p>
-                <p className="text-gray-700 mb-2">Category: {book.category}</p>
-                <p className="text-gray-700 mb-2">
-                  Rating:
-                  <ReactRating initialRating={book.rating} readonly />
+                <h2 className="text-xl font-bold mb-4">{book.name}</h2>
+                <p className="text-gray-700 mb-2"> <span className="font-semibold">Author:</span> {book.authorName}</p>
+                <p className="text-gray-700 mb-4"> <span className="font-semibold">Category:</span> {book.category}</p>
+                <p className="text-gray-700 mb-4">
+                 <span className="font-semibold ">Rating:   </span>  <ReactRating initialRating={book.rating} readonly /> 
+                 
                 </p>
                 <Link
                   to={`/update-book/${book._id}`}
@@ -106,7 +106,7 @@ const AllBook = () => {
               <th className="px-4 py-2">Action</th>
             </tr>
           </thead>
-          {/* Table body */}
+          
           <tbody>
             {filteredBooks.map((book) => (
               <tr key={book._id}>

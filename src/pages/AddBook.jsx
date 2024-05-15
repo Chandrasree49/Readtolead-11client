@@ -170,6 +170,7 @@ const AddBook = () => {
             onChange={handleChange}
             className="border border-gray-300 rounded px-3 py-2 w-full"
           >
+               <option value="">Select a category</option>
             <option value="History">History</option>
             <option value="Mysteries">Mysteries</option>
 

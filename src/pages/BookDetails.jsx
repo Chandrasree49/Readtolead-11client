@@ -63,17 +63,20 @@ function BookDetails() {
     }
 
     try {
-      await axios.post(`${BASE_URL}/api/borrow/${book._id}`, {
-        userEmail: user.email,
-        userName: user.displayName,
-        returnDate,
-        borroweddate: new Date().toISOString(),
-      });
-
-      onClose();
+      await axios
+        .post(`${BASE_URL}/api/borrow/${book._id}`, {
+          userEmail: user.email,
+          userName: user.displayName,
+          returnDate,
+          borroweddate: new Date().toISOString(),
+        })
+        .then((res) => {
+          console.log(res);
+        });
+      toast.success("Borrow Sucessful");
     } catch (error) {
-      console.error("Error borrowing book:", error);
-      toast.success("Borrow Failed");
+      //console.error("Error borrowing book:", error);
+      toast.error("Borrow Failed");
       setErrorMessage("An error occurred. Please try again later.");
     }
   };
@@ -92,11 +95,21 @@ function BookDetails() {
             />
             <div className="p-6">
               <h2 className="text-xl font-bold mb-2">{book.name}</h2>
-              <p className="text-gray-700 mb-2"><span className="font-semibold">Author: </span> {book.authorName}</p>
-              <p className="text-gray-700 mb-2"><span className="font-semibold">Category: </span>{book.category}</p>
-              <p className="text-gray-700 mb-2"><span className="font-semibold">Rating: </span>{book.rating}</p>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Author: </span>{" "}
+                {book.authorName}
+              </p>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Category: </span>
+                {book.category}
+              </p>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Rating: </span>
+                {book.rating}
+              </p>
               <p className="text-gray-700 mb-4">
-               <span className="font-semibold"> Description:</span> {book.shortDescription}
+                <span className="font-semibold"> Description:</span>{" "}
+                {book.shortDescription}
               </p>
 
               {isBorrowed == "no" && book.quantity > 0 && (
@@ -116,12 +129,21 @@ function BookDetails() {
             <div className="modal-box">
               <p className="py-4">
                 <h3 className="font-bold text-lg">Want to Borrow!</h3>
-                <p className="py-4">{<h1>Borrow <span style={{color:"#7E13AB",fontWeight:"bold"}}>{book.name}</span></h1>}</p>
+                <p className="py-4">
+                  {
+                    <h1>
+                      Borrow{" "}
+                      <span style={{ color: "#7E13AB", fontWeight: "bold" }}>
+                        {book.name}
+                      </span>
+                    </h1>
+                  }
+                </p>
               </p>
               <div className="py-4">
                 <form method="dialog">
                   <div>
-                    <label style={{color:"#A140CA"}}>Return Date: </label>
+                    <label style={{ color: "#A140CA" }}>Return Date: </label>
                     <input
                       type="date"
                       value={returnDate}
@@ -130,7 +152,7 @@ function BookDetails() {
                   </div>
                   <br />
                   <div>
-                    <label style={{color:"#A140CA"}}>Name: </label>
+                    <label style={{ color: "#A140CA" }}>Name: </label>
                     <input
                       type="text"
                       value={user && user.displayName}
@@ -139,7 +161,7 @@ function BookDetails() {
                   </div>
                   <br />
                   <div>
-                    <label style={{color:"#A140CA"}}>Email: </label>
+                    <label style={{ color: "#A140CA" }}>Email: </label>
                     <input type="text" value={user && user.email} disabled />
                   </div>
                   <br />
@@ -154,7 +176,9 @@ function BookDetails() {
                     <br />
                     <br></br>
                   </div>
-                  <button className="btn btn-outline btn-primary px-10">Close</button>
+                  <button className="btn btn-outline btn-primary px-10">
+                    Close
+                  </button>
                 </form>
               </div>
             </div>
