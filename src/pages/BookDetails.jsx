@@ -75,7 +75,6 @@ function BookDetails() {
         });
       toast.success("Borrow Sucessful");
     } catch (error) {
-      //console.error("Error borrowing book:", error);
       toast.error("Borrow Failed");
       setErrorMessage("An error occurred. Please try again later.");
     }

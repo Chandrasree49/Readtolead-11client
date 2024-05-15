@@ -3,7 +3,7 @@ import axios from "axios";
 import { BASE_URL } from "./apiEndPoints";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaList, FaTh } from "react-icons/fa"; // Import icons from FontAwesome
+import { FaList, FaTh } from "react-icons/fa";
 import ReactRating from "react-rating";
 import { Link } from "react-router-dom";
 
@@ -46,7 +46,7 @@ const AllBook = () => {
         >
           {showAvailableOnly ? "Show All Books" : "Show Available Books"}
         </button>
-        {/* View type icons */}
+
         <div className="flex space-x-2">
           <FaList
             className={`text-xl cursor-pointer ${
@@ -77,11 +77,19 @@ const AllBook = () => {
               />
               <div className="p-4">
                 <h2 className="text-xl font-bold mb-4">{book.name}</h2>
-                <p className="text-gray-700 mb-2"> <span className="font-semibold">Author:</span> {book.authorName}</p>
-                <p className="text-gray-700 mb-4"> <span className="font-semibold">Category:</span> {book.category}</p>
+                <p className="text-gray-700 mb-2">
+                  {" "}
+                  <span className="font-semibold">Author:</span>{" "}
+                  {book.authorName}
+                </p>
                 <p className="text-gray-700 mb-4">
-                 <span className="font-semibold ">Rating:   </span>  <ReactRating initialRating={book.rating} readonly /> 
-                 
+                  {" "}
+                  <span className="font-semibold">Category:</span>{" "}
+                  {book.category}
+                </p>
+                <p className="text-gray-700 mb-4">
+                  <span className="font-semibold ">Rating: </span>{" "}
+                  <ReactRating initialRating={book.rating} readonly />
                 </p>
                 <Link
                   to={`/update-book/${book._id}`}
@@ -95,7 +103,6 @@ const AllBook = () => {
         </div>
       ) : (
         <table className="table-auto w-full">
-          {/* Table headers */}
           <thead>
             <tr>
               <th className="px-4 py-2">Image</th>
@@ -106,7 +113,7 @@ const AllBook = () => {
               <th className="px-4 py-2">Action</th>
             </tr>
           </thead>
-          
+
           <tbody>
             {filteredBooks.map((book) => (
               <tr key={book._id}>
