@@ -36,15 +36,25 @@ function BooksByCategory() {
           />
           <div className="p-4">
             <h2 className="text-xl font-bold mb-2">{book.name}</h2>
-            <p className="text-gray-700 mb-2"><span className="font-semibold">Author:</span> {book.authorName}</p>
-            <p className="text-gray-700 mb-2"><span className="font-semibold">Category: </span>{book.category}</p>
-            <p className="text-gray-700 mb-2"><span className="font-semibold">Rating: </span>{book.rating}</p>
-            
+            <p className="text-gray-700 mb-2">
+              <span className="font-semibold">Author:</span> {book.authorName}
+            </p>
+            <p className="text-gray-700 mb-2">
+              <span className="font-semibold">Category: </span>
+              {book.category}
+            </p>
+            <p className="text-gray-700 mb-2">
+              <span className="font-semibold">Rating: </span>
+              {book.rating}
+            </p>
+            <p className="text-gray-700 mb-2">
+              <span className="font-semibold">Quantity: </span>
+              {book.quantity}
+            </p>
+
             <Link
               to={`/bookdetails/${book._id}`}
               className="btn btn-outline btn-primary"
-
-             
             >
               Details
             </Link>

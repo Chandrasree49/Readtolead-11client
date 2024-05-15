@@ -18,6 +18,7 @@ import BorrowBook from "./pages/BorrowBook.jsx";
 import BooksByCategory from "./pages/BooksByCategory.jsx";
 import BookDetails from "./pages/BookDetails.jsx";
 import UpdateBookForm from "./pages/UpdateBookForm.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -100,12 +101,16 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/borrowed-books",
+        path: "/borrowed-book",
         element: (
           <ProtectedRoute>
             <BorrowBook></BorrowBook>
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "*",
+        element: <ErrorPage></ErrorPage>,
       },
     ],
   },

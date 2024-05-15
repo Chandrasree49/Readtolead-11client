@@ -99,7 +99,7 @@ const Register = () => {
     <div className="register">
     <form
       className="w-[40%] mx-auto min-w[500px] border-2 rounded-xl p-5"
-      style={{border:"4px solid rgb(23, 152, 175)"}}
+      style={{border:"4px solid #E46019"}}
       onSubmit={handleRegister}
     >
       <p>Name</p>
@@ -264,10 +264,10 @@ const Register = () => {
       </label>
       <ToastContainer></ToastContainer>
       <br></br>
-      <button className="btn btn-success w-full" style={{background:"rgb(23, 152, 175"}}>Register</button>
+      <button className="btn btn-success w-full" style={{background:"#E46019"}}>Register</button>
       <p className="text-center mt-4">
         Already have an account?{" "}
-        <a href="/Login" className="text-green-500 hover:underline">
+        <a href="/Login" className="text-yellow-500 hover:underline">
           Login
         </a>
       </p>
