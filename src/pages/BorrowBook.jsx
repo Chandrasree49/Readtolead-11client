@@ -16,6 +16,7 @@ const BorrowBook = () => {
         const response = await axios.get(
           `${BASE_URL}/borrowedbooks/${user.email}`
         );
+        console.log(response.data);
         setBorrowedBooks(response.data);
       } catch (error) {
         console.error("Error fetching borrowed books:", error);
@@ -54,6 +55,10 @@ const BorrowBook = () => {
             <p className="text-sm text-gray-600 mb-4">
               Return Date: {book.returnDate}
             </p>
+            <p className="text-sm text-gray-600 mb-4">
+              Borrowed Date: {book.borrowedDate}
+            </p>
+
             <button
               onClick={() => handleReturnBook(book.id)}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"

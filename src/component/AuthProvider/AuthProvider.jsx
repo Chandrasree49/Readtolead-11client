@@ -11,6 +11,7 @@ import {
 import { initializeApp } from "firebase/app";
 import axios from "axios";
 import { getAuth } from "firebase/auth";
+import { BASE_URL } from "../../pages/apiEndPoints";
 
 export const AuthContext = createContext(null);
 
@@ -39,7 +40,7 @@ const AuthProvider = ({ children }) => {
         try {
           axios.defaults.withCredentials = true;
           const response = await axios.post(
-            "http://localhost:3000/api/jwt",
+            `${BASE_URL}/api/jwt`,
             {
               email: userEmail,
             },

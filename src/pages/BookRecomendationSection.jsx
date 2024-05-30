@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const BookRecommendationsSection = () => {
@@ -27,9 +26,16 @@ const BookRecommendationsSection = () => {
   ];
   return (
     <section className="container mx-auto px-4 py-8">
-
-      <h1 className="text-center text-4xl font-bold " style={{color:"#E46019 ",marginTop:"40px"}}>Book Recommendations</h1>
-      <p  className="text-center font-semibold my-5 ">We are recommended some of the books of our library to start reading.You can choose any book by your choice</p>
+      <h1
+        className="text-center text-4xl font-bold "
+        style={{ color: "#E46019 ", marginTop: "40px" }}
+      >
+        Book Recommendations
+      </h1>
+      <p className="text-center font-semibold my-5 ">
+        We are recommended some of the books of our library to start reading.You
+        can choose any book by your choice
+      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {recommendationData.map((recommendation) => (
           <div

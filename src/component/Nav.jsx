@@ -82,18 +82,7 @@ const Nav = () => {
                 Register
               </NavLink>
             )}
-            {user != null && (
-              <NavLink
-                to="/UpdateProfile"
-                className={({ isActive }) =>
-                  isActive
-                    ? "font-semibold active py-2 px-4 "
-                    : " font-semibold py-2 px-4"
-                }
-              >
-                Update Profile
-              </NavLink>
-            )}
+
             {user != null && (
               <NavLink
                 to="/borrowed-book"
@@ -177,7 +166,11 @@ const Nav = () => {
 
           {user != null && (
             <NavLink
+<<<<<<< HEAD
               to="/borrowed-books"
+=======
+              to="/borrowed-book"
+>>>>>>> c12cd11bd0effb189ef567a9c6115dbaf943481b
               className={({ isActive }) =>
                 isActive
                   ? "font-semibold active py-2 px-4 "

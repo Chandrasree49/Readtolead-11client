@@ -11,13 +11,14 @@ import AddBook from "./pages/AddBook.jsx";
 import AllBook from "./pages/AllBook.jsx";
 import Details from "./pages/Details.jsx";
 import ProtectedRoute from "./component/ProtectedRoute.jsx";
-import UpdateProfile from "./pages/UpdateProfile.jsx";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Category from "./pages/Category.jsx";
 import BorrowBook from "./pages/BorrowBook.jsx";
 import BooksByCategory from "./pages/BooksByCategory.jsx";
 import BookDetails from "./pages/BookDetails.jsx";
 import UpdateBookForm from "./pages/UpdateBookForm.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,15 +35,6 @@ const router = createBrowserRouter([
       {
         path: "/Register",
         element: <Register />,
-      },
-
-      {
-        path: "/UpdateProfile",
-        element: (
-          <ProtectedRoute>
-            <UpdateProfile></UpdateProfile>
-          </ProtectedRoute>
-        ),
       },
 
       {
@@ -109,12 +101,16 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/borrowed-books",
+        path: "/borrowed-book",
         element: (
           <ProtectedRoute>
             <BorrowBook></BorrowBook>
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "*",
+        element: <ErrorPage></ErrorPage>,
       },
     ],
   },

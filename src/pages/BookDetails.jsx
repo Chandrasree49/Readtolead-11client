@@ -70,17 +70,19 @@ function BookDetails() {
     }
 
     try {
-      await axios.post(`${BASE_URL}/api/borrow/${book._id}`, {
-        userEmail: user.email,
-        userName: user.displayName,
-        returnDate,
-        borroweddate: new Date().toISOString(),
-      });
-
-      onClose();
+      await axios
+        .post(`${BASE_URL}/api/borrow/${book._id}`, {
+          userEmail: user.email,
+          userName: user.displayName,
+          returnDate,
+          borroweddate: new Date().toISOString(),
+        })
+        .then((res) => {
+          console.log(res);
+        });
+      toast.success("Borrow Sucessful");
     } catch (error) {
-      console.error("Error borrowing book:", error);
-      toast.success("Borrow Failed");
+      toast.error("Borrow Failed");
       setErrorMessage("An error occurred. Please try again later.");
     }
   };
@@ -99,16 +101,26 @@ function BookDetails() {
             />
             <div className="p-6">
               <h2 className="text-xl font-bold mb-2">{book.name}</h2>
-              <p className="text-gray-700 mb-2">Author: {book.authorName}</p>
-              <p className="text-gray-700 mb-2">Category: {book.category}</p>
-              <p className="text-gray-700 mb-2">Rating: {book.rating}</p>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Author: </span>{" "}
+                {book.authorName}
+              </p>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Category: </span>
+                {book.category}
+              </p>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Rating: </span>
+                {book.rating}
+              </p>
               <p className="text-gray-700 mb-4">
-                Description: {book.shortDescription}
+                <span className="font-semibold"> Description:</span>{" "}
+                {book.shortDescription}
               </p>
 
               {isBorrowed == "no" && book.quantity > 0 && (
                 <button
-                  className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600"
+                  className="btn btn-outline btn-primary text-white font-semibold py-2 px-4 rounded"
                   onClick={() =>
                     document.getElementById("my_modal_2").showModal()
                   }
@@ -123,10 +135,23 @@ function BookDetails() {
             <div className="modal-box">
               <p className="py-4">
                 <h3 className="font-bold text-lg">Want to Borrow!</h3>
+<<<<<<< HEAD
                 <h2 className="font-bold text-lg">
                   Please Make Payment after that borrow button will be active!
                 </h2>
                 <p className="py-4">{<h1>Borrow {book.name}</h1>}</p>
+=======
+                <p className="py-4">
+                  {
+                    <h1>
+                      Borrow{" "}
+                      <span style={{ color: "#7E13AB", fontWeight: "bold" }}>
+                        {book.name}
+                      </span>
+                    </h1>
+                  }
+                </p>
+>>>>>>> c12cd11bd0effb189ef567a9c6115dbaf943481b
               </p>
               {!paymentDone && (
                 <CardPayment
@@ -137,7 +162,7 @@ function BookDetails() {
               <div className="py-4">
                 <form method="dialog">
                   <div>
-                    <label>Return Date:</label>
+                    <label style={{ color: "#A140CA" }}>Return Date: </label>
                     <input
                       type="date"
                       value={returnDate}
@@ -146,7 +171,7 @@ function BookDetails() {
                   </div>
                   <br />
                   <div>
-                    <label>Name:</label>
+                    <label style={{ color: "#A140CA" }}>Name: </label>
                     <input
                       type="text"
                       value={user && user.displayName}
@@ -155,7 +180,7 @@ function BookDetails() {
                   </div>
                   <br />
                   <div>
-                    <label>Email:</label>
+                    <label style={{ color: "#A140CA" }}>Email: </label>
                     <input type="text" value={user && user.email} disabled />
                   </div>
                   <br />
@@ -164,17 +189,24 @@ function BookDetails() {
                       type="button"
                       disabled={!paymentDone}
                       onClick={handleSubmit}
+<<<<<<< HEAD
                       className={
                         paymentDone
                           ? "bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-600"
                           : "bg-gray-500 text-white font-semibold py-2 px-4 rounded hover:bg-gray-500"
                       }
+=======
+                      className="btn btn-outline btn-warning font-semibold py-2 px-4"
+>>>>>>> c12cd11bd0effb189ef567a9c6115dbaf943481b
                     >
                       Borrow Now
                     </button>
                     <br />
+                    <br></br>
                   </div>
-                  <button className="btn">Close</button>
+                  <button className="btn btn-outline btn-primary px-10">
+                    Close
+                  </button>
                 </form>
               </div>
             </div>
@@ -186,7 +218,7 @@ function BookDetails() {
           >
             <div className="modal-box">
               <h3 className="font-bold text-lg">Want to Borrow!</h3>
-              <p className="py-4">{<h1>Borrow {book.name}</h1>}</p>
+              <p className="py-4 ">{<h1>Borrow {book.name}</h1>}</p>
 
               <div className="modal-content">
                 <form></form>
