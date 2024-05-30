@@ -6,13 +6,20 @@ import BorrowModal from "./BorrowModal";
 import { BASE_URL } from "./apiEndPoints";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CardPayment from "../component/CardPayment";
 
 function BookDetails() {
   const { user, logout } = useContext(AuthContext);
   const { id } = useParams();
   const [book, setBook] = useState(null);
+  const [paymentDone, setPaymentDone] = useState(false);
   const [isBorrowed, setIsBorrowed] = useState("yes");
   const [showBorrowModal, setShowBorrowModal] = useState(false);
+
+  const handlePaymentComplete = (paymentData) => {
+    // Handle the payment data received from CardPayment component
+    setPaymentDone(paymentData);
+  };
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -116,8 +123,17 @@ function BookDetails() {
             <div className="modal-box">
               <p className="py-4">
                 <h3 className="font-bold text-lg">Want to Borrow!</h3>
+                <h2 className="font-bold text-lg">
+                  Please Make Payment after that borrow button will be active!
+                </h2>
                 <p className="py-4">{<h1>Borrow {book.name}</h1>}</p>
               </p>
+              {!paymentDone && (
+                <CardPayment
+                  onPaymentComplete={handlePaymentComplete}
+                ></CardPayment>
+              )}
+
               <div className="py-4">
                 <form method="dialog">
                   <div>
@@ -146,8 +162,13 @@ function BookDetails() {
                   <div>
                     <button
                       type="button"
+                      disabled={!paymentDone}
                       onClick={handleSubmit}
-                      className="bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-600"
+                      className={
+                        paymentDone
+                          ? "bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-600"
+                          : "bg-gray-500 text-white font-semibold py-2 px-4 rounded hover:bg-gray-500"
+                      }
                     >
                       Borrow Now
                     </button>
