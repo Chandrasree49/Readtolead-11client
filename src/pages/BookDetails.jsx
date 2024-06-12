@@ -135,12 +135,6 @@ function BookDetails() {
             <div className="modal-box">
               <p className="py-4">
                 <h3 className="font-bold text-lg">Want to Borrow!</h3>
-<<<<<<< HEAD
-                <h2 className="font-bold text-lg">
-                  Please Make Payment after that borrow button will be active!
-                </h2>
-                <p className="py-4">{<h1>Borrow {book.name}</h1>}</p>
-=======
                 <p className="py-4">
                   {
                     <h1>
@@ -151,7 +145,6 @@ function BookDetails() {
                     </h1>
                   }
                 </p>
->>>>>>> c12cd11bd0effb189ef567a9c6115dbaf943481b
               </p>
               {!paymentDone && (
                 <CardPayment
@@ -189,15 +182,7 @@ function BookDetails() {
                       type="button"
                       disabled={!paymentDone}
                       onClick={handleSubmit}
-<<<<<<< HEAD
-                      className={
-                        paymentDone
-                          ? "bg-green-500 text-white font-semibold py-2 px-4 rounded hover:bg-green-600"
-                          : "bg-gray-500 text-white font-semibold py-2 px-4 rounded hover:bg-gray-500"
-                      }
-=======
                       className="btn btn-outline btn-warning font-semibold py-2 px-4"
->>>>>>> c12cd11bd0effb189ef567a9c6115dbaf943481b
                     >
                       Borrow Now
                     </button>
